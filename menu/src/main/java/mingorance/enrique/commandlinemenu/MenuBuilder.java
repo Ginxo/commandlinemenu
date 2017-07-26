@@ -17,12 +17,18 @@ public class MenuBuilder {
         return new MenuBuilder(new Menu(title, selection));
     }
 
-    public MenuBuilder addMenuOption(final Integer selection, final String text, final Boolean isExit) {
-        this.menu.addMenuOption(new MenuOption(selection, text, isExit));
+    public MenuBuilder addSimpleOption(final Integer selection, final String text) {
+        this.menu.addMenuOption(new MenuOption(selection, text, false));
         return this;
     }
 
-    public MenuBuilder addSubMenu(final Menu subMenu) {
+    public MenuBuilder addExitOption(final Integer selection, final String text) {
+        this.menu.addMenuOption(new MenuOption(selection, text, true));
+        return this;
+    }
+
+    public MenuBuilder addSubMenuOption(final String text, final Menu subMenu) {
+        this.menu.addMenuOption(new MenuOption(subMenu.getSelection(), text, false));
         this.menu.addSubMenu(subMenu);
         return this;
     }
